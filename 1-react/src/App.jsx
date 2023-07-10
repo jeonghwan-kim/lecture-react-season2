@@ -1,3 +1,5 @@
+import Button from "./components/Button";
+
 const App = () => (
   <div className="ProductPage">
     <div className="Page">
@@ -11,7 +13,9 @@ const App = () => (
               <div className="description">
                 <h2>고소한 바질 파스타</h2>
                 <div>6,000원</div>
-                <button className="Button brand">주문하기</button>
+                <Button styleType="brand" onClick={() => console.log("click")}>
+                  주문하기
+                </Button>
               </div>
               <div className="thumbnail">
                 <img
