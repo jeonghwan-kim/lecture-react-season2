@@ -3,7 +3,7 @@ import ProductApi from "shared/api/ProductApi";
 import Page from "../../components/Page";
 import Title from "../../components/Title";
 import Navbar from "../../components/Navbar";
-import ProductItem from "../../components/ProductItem";
+import OrderableProductItem from "./OrderableProductItem";
 
 class ProductPage extends React.Component {
   constructor(props) {
@@ -33,7 +33,7 @@ class ProductPage extends React.Component {
           <ul>
             {this.state.productList.map((product) => (
               <li key={product.id}>
-                <ProductItem product={product} />
+                <OrderableProductItem product={product} />
               </li>
             ))}
           </ul>

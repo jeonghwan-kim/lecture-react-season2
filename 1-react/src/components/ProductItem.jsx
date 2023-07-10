@@ -1,6 +1,6 @@
 import Button from "./Button";
 
-const ProductItem = ({ product }) => {
+const ProductItem = ({ product, onClick }) => {
   const { name, price, thumbnail } = product;
 
   return (
@@ -8,9 +8,11 @@ const ProductItem = ({ product }) => {
       <div className="description">
         <h2>{name}</h2>
         <div>{price.toLocaleString()}원</div>
-        <Button styleType="brand" onClick={() => console.log("click")}>
-          주문하기
-        </Button>
+        {onClick && (
+          <Button styleType="brand" onClick={() => console.log("click")}>
+            주문하기
+          </Button>
+        )}
       </div>
       <div className="thumbnail">
         <img src={thumbnail} alt={`${name} ${price.toLocaleString()}원`} />
