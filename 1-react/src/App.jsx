@@ -1,4 +1,11 @@
-import Button from "./components/Button";
+import ProductItem from "./components/ProductItem";
+
+const fakeProduct = {
+  id: "CACDA421",
+  name: "해물 계란 라면",
+  price: "6000",
+  thumbnail: "./images/menu-해물계란라면.jpg",
+};
 
 const App = () => (
   <div className="ProductPage">
@@ -9,21 +16,7 @@ const App = () => (
       <main>
         <ul>
           <li>
-            <div className="ProductItem">
-              <div className="description">
-                <h2>고소한 바질 파스타</h2>
-                <div>6,000원</div>
-                <Button styleType="brand" onClick={() => console.log("click")}>
-                  주문하기
-                </Button>
-              </div>
-              <div className="thumbnail">
-                <img
-                  src="./images/menu-고소한바질파스타.jpg"
-                  alt="고소한바질파스타 6,000원"
-                />
-              </div>
-            </div>
+            <ProductItem product={fakeProduct} />
           </li>
         </ul>
       </main>
