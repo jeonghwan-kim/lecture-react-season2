@@ -33,7 +33,8 @@ class CartPage extends React.Component {
           header={<Title backUrl="/">장바구니</Title>}
           footer={<PaymentButton />}
         >
-          {product && <ProductItem product={product} />} <OrderForm />
+          {product && <ProductItem product={product} />}
+          <OrderForm />
         </Page>
       </div>
     );
