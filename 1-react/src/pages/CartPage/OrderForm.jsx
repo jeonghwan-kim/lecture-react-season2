@@ -27,7 +27,7 @@ class OrderForm extends React.Component {
     const messageToShop = this.getInputValueByName("messageToShop");
     const messageToRider = this.getInputValueByName("messageToRider");
 
-    console.log({
+    this.props.onSubmit({
       deliveryAddress,
       deliveryContact,
       paymentMethod,

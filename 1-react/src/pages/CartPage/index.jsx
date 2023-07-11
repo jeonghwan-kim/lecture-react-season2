@@ -10,6 +10,7 @@ class CartPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = { product: null };
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   async componentDidMount() {
@@ -25,6 +26,10 @@ class CartPage extends React.Component {
     }
   }
 
+  handleSubmit(values) {
+    console.log(values);
+  }
+
   render() {
     const { product } = this.state;
     return (
@@ -33,7 +38,8 @@ class CartPage extends React.Component {
           header={<Title backUrl="/">장바구니</Title>}
           footer={<PaymentButton />}
         >
-          {product && <ProductItem product={product} />} <OrderForm />
+          {product && <ProductItem product={product} />}
+          <OrderForm onSubmit={this.handleSubmit} />
         </Page>
       </div>
     );
