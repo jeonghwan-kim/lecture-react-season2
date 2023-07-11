@@ -10,6 +10,7 @@ const OrderForm = () => {
       <FormControl label="주소" htmlFor="deliveryAddress" required>
         <input
           type="text"
+          name="deliveryAddress"
           id="deliveryAddress"
           placeholder="배달받을 주소를 입력하세요"
           required
@@ -19,6 +20,7 @@ const OrderForm = () => {
       <FormControl label="연락처" htmlFor="deliveryContact" required>
         <input
           type="text"
+          name="deliveryContact"
           id="deliveryContact"
           placeholder="연락처를 입력하세요"
           pattern="^\d{2,3}-\d{3,4}-\d{4}$"
