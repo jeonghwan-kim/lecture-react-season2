@@ -1,4 +1,7 @@
 import React from "react";
+import CartPage from "../pages/CartPage";
+import OrderPage from "../pages/OrderPage";
+import ProductPage from "../pages/ProductPage";
 
 export const routerContext = React.createContext({});
 routerContext.displayName = "RouterContext";
@@ -29,6 +32,18 @@ export class Router extends React.Component {
     );
   }
 }
+
+export const Routes = () => (
+  <routerContext.Consumer>
+    {({ path }) => (
+      <>
+        {path === "/cart" && <CartPage />}
+        {path === "/order" && <OrderPage />}
+        {!["/cart", "/order"].includes(path) && <ProductPage />}
+      </>
+    )}
+  </routerContext.Consumer>
+);
 
 export const Link = ({ to, ...rest }) => (
   <routerContext.Consumer>
