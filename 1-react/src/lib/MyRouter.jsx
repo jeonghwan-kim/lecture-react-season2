@@ -14,6 +14,7 @@ export class Router extends React.Component {
 
   handleChangePath(path) {
     this.setState({ path });
+    window.history.pushState("", "", path);
   }
 
   render() {
