@@ -9,7 +9,7 @@ const ProductItem = ({ product, onClick }) => {
         <h2>{name}</h2>
         <div>{price.toLocaleString()}원</div>
         {onClick && (
-          <Button styleType="brand" onClick={() => console.log("click")}>
+          <Button styleType="brand" onClick={onClick}>
             주문하기
           </Button>
         )}
