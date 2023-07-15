@@ -5,7 +5,7 @@ const OrderableProductItem = ({ product }) => (
   <MyRouter.routerContext.Consumer>
     {({ changePath }) => {
       const handleClick = () => {
-        changePath(`/cart?productId=${product.id}`);
+        changePath(`/cart`);
       };
       return <ProductItem product={product} onClick={handleClick} />;
     }}
