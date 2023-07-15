@@ -3,7 +3,7 @@ import * as MyRouter from "../../lib/MyRouter";
 
 const OrderableProductItem = ({ product, navigate }) => {
   const handleClick = () => {
-    navigate(`/cart`);
+    navigate(`/cart?productId=${product.id}`);
   };
   return <ProductItem product={product} onClick={handleClick} />;
 };

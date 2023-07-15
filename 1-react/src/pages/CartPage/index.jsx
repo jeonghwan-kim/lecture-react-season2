@@ -19,8 +19,10 @@ class CartPage extends React.Component {
   }
 
   async fetch() {
+    const { productId } = this.props.params();
+    if (!productId) return;
     try {
-      const product = await ProductApi.fetchProduct("CACDA421");
+      const product = await ProductApi.fetchProduct(productId);
       this.setState({ product });
     } catch (e) {
       console.error(e);
