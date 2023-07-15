@@ -3,6 +3,7 @@ import ProductApi from "shared/api/ProductApi";
 import Page from "../../components/Page";
 import ProductItem from "../../components/ProductItem";
 import Title from "../../components/Title";
+import * as MyRouter from "../../lib/MyRouter";
 import OrderForm from "./OrderForm";
 import PaymentButton from "./PaymentButton";
 
@@ -28,6 +29,10 @@ class CartPage extends React.Component {
 
   handleSubmit(values) {
     console.log(values);
+
+    // TODO: 결제 성공 후
+
+    this.props.navigate("/order");
   }
 
   render() {
@@ -46,4 +51,4 @@ class CartPage extends React.Component {
   }
 }
 
-export default CartPage;
+export default MyRouter.withRouter(CartPage);

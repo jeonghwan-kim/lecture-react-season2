@@ -1,4 +1,5 @@
 import React from "react";
+import { getComponentName } from "./utils";
 
 export const routerContext = React.createContext({});
 routerContext.displayName = "RouterContext";
@@ -94,3 +95,22 @@ export const Link = ({ to, ...rest }) => (
     }}
   </routerContext.Consumer>
 );
+
+export const withRouter = (WrappedComponent) => {
+  const WithRouter = (props) => (
+    <routerContext.Consumer>
+      {({ path, changePath }) => {
+        const navigate = (nextPath) => {
+          if (path !== nextPath) changePath(nextPath);
+        };
+
+        const enhancedProps = {
+          navigate,
+        };
+        return <WrappedComponent {...props} {...enhancedProps} />;
+      }}
+    </routerContext.Consumer>
+  );
+  WithRouter.displayName = `WithRouter(${getComponentName(WrappedComponent)})`;
+  return WithRouter;
+};
