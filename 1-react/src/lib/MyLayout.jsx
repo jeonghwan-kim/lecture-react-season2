@@ -10,11 +10,17 @@ export class Layout extends React.Component {
     this.state = {
       dialog: null,
     };
+    this.setDialog = this.setDialog.bind(this);
+  }
+
+  setDialog(dialog) {
+    this.setState({ dialog });
   }
 
   render() {
     const value = {
       dialog: this.state.dialog,
+      setDialog: this.setDialog,
     };
     return (
       <layoutContext.Provider value={value}>
