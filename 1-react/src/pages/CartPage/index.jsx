@@ -3,6 +3,7 @@ import ProductApi from "shared/api/ProductApi";
 import Page from "../../components/Page";
 import ProductItem from "../../components/ProductItem";
 import Title from "../../components/Title";
+import ErrorDialog from "../../components/ErrorDialog";
 import * as MyRouter from "../../lib/MyRouter";
 import * as MyLayout from "../../lib/MyLayout";
 import OrderForm from "./OrderForm";
@@ -20,7 +21,7 @@ class CartPage extends React.Component {
   }
 
   async fetch() {
-    const { startLoading, finishLoading } = this.props;
+    const { startLoading, finishLoading, openDialog } = this.props;
     const { productId } = this.props.params();
     if (!productId) return;
 
@@ -28,10 +29,10 @@ class CartPage extends React.Component {
     try {
       const product = await ProductApi.fetchProduct(productId);
       this.setState({ product });
-      finishLoading();
     } catch (e) {
-      console.error(e);
+      openDialog(<ErrorDialog />);
     }
+    finishLoading();
   }
 
   handleSubmit(values) {

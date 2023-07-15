@@ -3,6 +3,7 @@ import OrderApi from "shared/api/OrderApi";
 import Page from "../../components/Page";
 import Title from "../../components/Title";
 import Navbar from "../../components/Navbar";
+import ErrorDialog from "../../components/ErrorDialog";
 import * as MyLayout from "../../lib/MyLayout";
 import OrderStatusCard from "./OrderStatusCard";
 import OrderPaymentCard from "./OrderPaymentCard";
@@ -19,16 +20,17 @@ class OrderPage extends React.Component {
   }
 
   async fetch() {
-    const { startLoading, finishLoading } = this.props;
+    const { startLoading, finishLoading, openDialog } = this.props;
 
     startLoading("주문 정보 로딩중...");
     try {
       const order = await OrderApi.fetchMyOrder();
       this.setState({ order });
-      finishLoading();
     } catch (e) {
-      console.error(e);
+      openDialog(<ErrorDialog />);
+      return;
     }
+    finishLoading();
   }
 
   render() {

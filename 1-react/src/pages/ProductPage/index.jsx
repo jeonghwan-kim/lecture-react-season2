@@ -3,6 +3,7 @@ import ProductApi from "shared/api/ProductApi";
 import Page from "../../components/Page";
 import Title from "../../components/Title";
 import Navbar from "../../components/Navbar";
+import ErrorDialog from "../../components/ErrorDialog";
 import * as MyLayout from "../../lib/MyLayout";
 import OrderableProductItem from "./OrderableProductItem";
 
@@ -19,16 +20,17 @@ class ProductPage extends React.Component {
   }
 
   async fetch() {
-    const { startLoading, finishLoading } = this.props;
+    const { startLoading, finishLoading, openDialog } = this.props;
 
     startLoading("메뉴 목록 로딩중...");
     try {
       const productList = await ProductApi.fetchProductList();
       this.setState({ productList });
-      finishLoading();
     } catch (e) {
-      console.error(e);
+      openDialog(<ErrorDialog />);
+      return;
     }
+    finishLoading();
   }
 
   render() {
