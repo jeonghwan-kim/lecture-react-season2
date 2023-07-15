@@ -1,4 +1,5 @@
 import React from "react";
+import ReactDOM from "react-dom";
 import Backdrop from "../components/Backdrop";
 import Dialog from "../components/Dialog";
 import { getComponentName } from "./utils";
@@ -59,5 +60,10 @@ export const withLayout = (WrappedComponent) => {
 };
 
 export const DialogContainer = withLayout(
-  ({ dialog }) => dialog && <Backdrop>{dialog}</Backdrop>
+  ({ dialog }) =>
+    dialog &&
+    ReactDOM.createPortal(
+      <Backdrop>{dialog}</Backdrop>,
+      document.querySelector("#dialog")
+    )
 );
