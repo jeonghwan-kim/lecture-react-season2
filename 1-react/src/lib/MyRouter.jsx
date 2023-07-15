@@ -1,7 +1,4 @@
 import React from "react";
-import CartPage from "../pages/CartPage";
-import OrderPage from "../pages/OrderPage";
-import ProductPage from "../pages/ProductPage";
 
 export const routerContext = React.createContext({});
 routerContext.displayName = "RouterContext";
@@ -33,17 +30,40 @@ export class Router extends React.Component {
   }
 }
 
-export const Routes = () => (
+export const Routes = ({ children }) => (
   <routerContext.Consumer>
-    {({ path }) => (
-      <>
-        {path === "/cart" && <CartPage />}
-        {path === "/order" && <OrderPage />}
-        {!["/cart", "/order"].includes(path) && <ProductPage />}
-      </>
-    )}
+    {({ path }) => {
+      // 반환할 리액트 엘리먼트
+      let selectedRoute = null;
+
+      React.Children.forEach(children, (child) => {
+        // 리액트 엘리먼트인지 검사한다
+        if (!React.isValidElement(child)) return;
+
+        // 프레그먼트인지 검사한다
+        if (child.type === React.Fragment) return;
+
+        // Route 컴포넌트인지 검사한다. 덕 타이핑
+        if (!child.props.path || !child.props.element) return;
+
+        // Route에 등록된 컴포넌트가 요청한 경로에 해당하는지 검사한다.
+        // 요청 경로에서 쿼리 문자열을 제거하고 비교한다.
+        if (child.props.path !== path.replace(/\?.*$/, "")) return;
+
+        // 엘리먼트를 찾았다.
+        selectedRoute = child.props.element;
+      });
+
+      return selectedRoute;
+    }}
   </routerContext.Consumer>
 );
+
+/**
+ * 사용 예
+ * <MyRouter.Route path={'경로'} element={<리액트_앨리먼트 />} />
+ */
+export const Route = () => null;
 
 export const Link = ({ to, ...rest }) => (
   <routerContext.Consumer>
