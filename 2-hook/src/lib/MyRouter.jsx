@@ -3,7 +3,7 @@ import React from "react";
 export const routerContext = React.createContext({});
 routerContext.displayName = "RouterContext";
 
-export const Router = () => {
+export const Router = ({ children }) => {
   const [path, setPath] = React.useState(window.location.pathname);
 
   const changePath = (path) => {
