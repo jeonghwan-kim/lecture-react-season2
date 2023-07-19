@@ -1,6 +1,7 @@
 import React from "react";
 import OrderApi from "shared/api/OrderApi";
 import ProductApi from "shared/api/ProductApi";
+import * as MyRouter from "../../lib/MyRouter";
 import Page from "../../components/Page";
 import Title from "../../components/Title";
 import ProductItem from "../../components/ProductItem";
@@ -9,6 +10,7 @@ import OrderForm from "./OrderForm";
 
 const CartPage = () => {
   const [product, setProduct] = React.useState();
+  const { productId } = MyRouter.useParams();
 
   const handleSubmit = async (values) => {
     // TODO startLoading("결재중...");
@@ -37,10 +39,9 @@ const CartPage = () => {
   };
 
   React.useEffect(() => {
-    // TODO const productId = searchParams.get("productId");
-    // TODO if (!productId) return;
+    if (!productId) return;
 
-    fetch("CACDA423");
+    fetch(productId);
   }, []);
 
   return (
