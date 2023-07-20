@@ -19,6 +19,8 @@ export const Router = ({ children }) => {
 
   React.useEffect(() => {
     window.addEventListener("popstate", handlePopstate);
+    window.history.replaceState({ path }, "");
+
     return () => {
       window.removeEventListener("popstate", handlePopstate);
     };
