@@ -2,7 +2,7 @@ import * as MyRouter from "../../lib/MyRouter";
 import Dialog from "../../components/Dialog";
 import Button from "../../components/Button";
 
-const PaymentSuccessDialog = ({ navigate, closeDialog }) => {
+const PaymentSuccessDialog = () => {
   const navigate = MyRouter.useNavigate();
 
   const handleClickNo = () => {
