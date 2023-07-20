@@ -1,8 +1,16 @@
+import React from "react";
 import FormControl from "../../components/FormControl";
 
 const OrderForm = ({ onSubmit }) => {
+  const formRef = React.useRef(null);
+
   const getInputValueByName = (name) => {
-    // todo
+    if (!formRef.current) return "";
+
+    const inputElement = formRef.current.elements.namedItem(name);
+    if (!inputElement) return "";
+
+    return inputElement.value;
   };
 
   const handleSubmit = (e) => {
@@ -27,7 +35,7 @@ const OrderForm = ({ onSubmit }) => {
     <form
       className="OrderForm"
       id="order-form"
-      // ref={this.formRef}
+      ref={formRef}
       onSubmit={handleSubmit}
     >
       <FormControl label="주소" htmlFor="deliveryAddress" required>
