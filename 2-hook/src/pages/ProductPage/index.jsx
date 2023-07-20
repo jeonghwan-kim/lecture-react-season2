@@ -1,24 +1,27 @@
 import React from "react";
 import ProductApi from "shared/api/ProductApi";
+import * as MyLayout from "../../lib/MyLayout";
 import Page from "../../components/Page";
 import Title from "../../components/Title";
 import Navbar from "../../components/Navbar";
+import ErrorDialog from "../../components/ErrorDialog";
 import OrderableProductItem from "./OrderableProductItem";
 
 const ProductPage = () => {
   const [productList, setProductList] = React.useState([]);
+  const { startLoading, finishLoading } = MyLayout.useLoading();
+  const { openDialog } = MyLayout.useDialog();
 
   const fetch = async () => {
-    // TODO: startLoading();
+    startLoading("메뉴 목록 로딩중...");
     try {
       const productList = await ProductApi.fetchProductList();
       setProductList(productList);
     } catch (e) {
-      // TODO: finishLoading();
-      // TODO: openDialog(<ErrorDialog />);
+      openDialog(<ErrorDialog />);
       return;
     }
-    // TODO: finishLoading();
+    finishLoading();
   };
 
   React.useEffect(() => {
