@@ -1,7 +1,7 @@
 import Dialog from "../../components/Dialog";
 import Button from "../../components/Button";
 
-const PaymentSuccessDialog = ({ navigate, closeDialog }) => {
+const PaymentSuccessDialog = () => {
   const handleClickNo = () => {
     // TODO: closeDialog();
     // TODO: navigate("/");
