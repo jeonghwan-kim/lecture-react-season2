@@ -66,11 +66,16 @@ export const useForm = ({ initialValue, validate, onSubmit }) => {
 const formContext = React.createContext({});
 formContext.displayName = "FormContext";
 
-export const Form = ({ children, ...rest }) => {
+export const Form = ({ id, className, children, ...rest }) => {
   const formValue = useForm(rest);
   return (
     <formContext.Provider value={formValue}>
-      <form noValidate onSubmit={formValue.handleSubmit}>
+      <form
+        noValidate
+        id={id}
+        className={className}
+        onSubmit={formValue.handleSubmit}
+      >
         {children}
       </form>
     </formContext.Provider>
