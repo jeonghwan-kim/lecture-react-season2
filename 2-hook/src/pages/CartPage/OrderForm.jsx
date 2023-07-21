@@ -1,5 +1,6 @@
 import React from "react";
-import * as MyForm from "../../lib/MyForm";
+// import * as MyForm from "../../lib/MyForm";
+import * as MyForm from "../../lib/MyForm-reducer";
 import FormControl from "../../components/FormControl";
 
 const OrderForm = ({ onSubmit }) => {
@@ -15,7 +16,7 @@ const OrderForm = ({ onSubmit }) => {
       errors.deliveryContact =
         "전화번호 형식으로 입력하세요. (예: 010-1234-5678)";
     }
-    console.log("validate", { errors });
+
     return errors;
   };
 
