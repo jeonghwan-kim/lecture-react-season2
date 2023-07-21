@@ -175,6 +175,26 @@ const MyReact = (function MyReact() {
     return nextValue;
   }
 
+  function memo(TargetComponent) {
+    return (nextProps) => {
+      if (!TargetComponent.memorizedState) {
+        const nextValue = React.createElement(TargetComponent, nextProps);
+        TargetComponent.memorizedState = [nextValue, nextProps];
+        return nextValue;
+      }
+
+      const [prevValue, prevProps] = TargetComponent.memorizedState;
+      const sameProps = Object.keys(nextProps).every((key) => {
+        return nextProps[key] === prevProps[key];
+      });
+      if (sameProps) return prevValue;
+
+      const nextValue = React.createElement(TargetComponent, nextProps);
+      TargetComponent.memorizedState = [nextValue, nextProps];
+      return nextValue;
+    };
+  }
+
   return {
     useState,
     useEffect,
@@ -183,6 +203,7 @@ const MyReact = (function MyReact() {
     useRef,
     useReducer,
     useMemo,
+    memo,
 
     resetCursor,
     cleanupEffects,
