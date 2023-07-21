@@ -91,11 +91,12 @@ export const useMatch = () => {
 };
 
 export const useParams = () => {
-  // TODO: useMemo 사용해야
-  const params = new URLSearchParams(window.location.search);
-  const paramObject = {};
-  for (const [key, value] of params) {
-    paramObject[key] = value;
-  }
-  return paramObject;
+  return React.useMemo(() => {
+    const params = new URLSearchParams(window.location.search);
+    const paramObject = {};
+    for (const [key, value] of params) {
+      paramObject[key] = value;
+    }
+    return paramObject;
+  }, [window.location.search]);
 };
