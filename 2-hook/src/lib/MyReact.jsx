@@ -195,6 +195,10 @@ const MyReact = (function MyReact() {
     };
   }
 
+  function useCallback(callback, deps) {
+    return useMemo(() => callback, deps);
+  }
+
   return {
     useState,
     useEffect,
@@ -204,6 +208,7 @@ const MyReact = (function MyReact() {
     useReducer,
     useMemo,
     memo,
+    useCallback,
 
     resetCursor,
     cleanupEffects,
