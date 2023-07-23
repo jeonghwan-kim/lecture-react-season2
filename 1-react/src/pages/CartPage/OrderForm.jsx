@@ -65,7 +65,7 @@ class OrderForm extends React.Component {
           />
         </FormControl>
         <FormControl label="결재수단" htmlFor="paymentMethod" required>
-          <select name="paymentMethod" id="paymentMethod" value="">
+          <select name="paymentMethod" id="paymentMethod">
             <option value="마이페이">마이페이</option>
             <option value="만나서 결제">만나서 결제</option>
           </select>
