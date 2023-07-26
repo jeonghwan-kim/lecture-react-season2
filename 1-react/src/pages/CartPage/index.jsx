@@ -33,6 +33,7 @@ class CartPage extends React.Component {
       this.setState({ product });
     } catch (e) {
       openDialog(<ErrorDialog />);
+      return;
     }
     finishLoading();
   }
