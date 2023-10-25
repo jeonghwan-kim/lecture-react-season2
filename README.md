@@ -136,3 +136,7 @@
 - `4-hook/07-use-memo`: 4.4.4 useCallback
 - `4-hook/08-use-memo-apply`: 4.4.6 활용: OrderStatusCard(실습)
 - `main`: 4.4.8 활용: MyRouter params(실습). 최종 결과물.
+
+## 샘플 어플리케이션 요구사항
+
+- [요구사항 문서](https://github.com/jeonghwan-kim/lecture-react-season2/wiki/요구사항)
