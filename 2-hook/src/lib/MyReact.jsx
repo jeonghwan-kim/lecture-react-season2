@@ -81,10 +81,14 @@ const MyReact = (function MyReact() {
     cleanups.forEach((cleanup) => typeof cleanup === "function" && cleanup());
   }
 
-  function createContext(initialValue) {
-    const emitter = createEventEmitter(initialValue);
+  function createContext(defaultValue) {
+    let emitter;
 
     function Provider({ value, children }) {
+      if (!emitter) {
+        emitter = createEventEmitter(value);
+      }
+
       React.useEffect(() => {
         emitter.set(value);
       }, [value]);
@@ -92,19 +96,34 @@ const MyReact = (function MyReact() {
       return <>{children}</>;
     }
 
+    function getValue() {
+      return emitter ? emitter.get() : defaultValue;
+    }
+
+    function on(handler) {
+      emitter?.on(handler);
+    }
+
+    function off(handler) {
+      emitter?.off(handler);
+    }
+
     return {
       Provider,
-      emitter,
+      getValue,
+      on,
+      off,
     };
   }
 
   function useContext(context) {
-    const [value, setValue] = React.useState(context.emitter.get());
+    const [value, setValue] = React.useState(context.getValue());
 
     React.useEffect(() => {
-      context.emitter.on(setValue);
+      context.on(setValue);
+
       return () => {
-        context.emitter.off(setValue);
+        context.off(setValue);
       };
     }, [context]);
 
